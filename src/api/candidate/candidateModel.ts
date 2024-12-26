@@ -30,6 +30,7 @@ export const CandidateSchema = z.object({
 export type UpdateCandidateDto = z.infer<typeof UpdateCandidateDtoSchema>;
 export const UpdateCandidateDtoSchema = z.object({
   name,
+  email,
   abilities,
   position,
   aboutMe,
@@ -53,6 +54,7 @@ export const UpdateCandidateSchema = z.object({
   params: z.object({ id }),
   body: z.object({
     name,
+    email,
     abilities,
     position,
     aboutMe,
