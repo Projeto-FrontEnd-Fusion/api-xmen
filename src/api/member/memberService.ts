@@ -72,7 +72,7 @@ export class MemberService {
       if (!member) {
         return ServiceResponse.failure("Member not found.", null, StatusCodes.NOT_FOUND);
       }
-      return ServiceResponse.success<Member>("Member sucessfully found.", member, StatusCodes.OK);
+      return ServiceResponse.success<Member>("Member successfully found.", member, StatusCodes.OK);
     } catch (ex) {
       const errorMessage = `Error while finding the member with id ${id}:, ${(ex as Error).message}`;
       logger.error(errorMessage);
@@ -109,7 +109,17 @@ export class MemberService {
       }
 
       await this.memberRepository.updateAsync(id, newMemberData);
-      return ServiceResponse.success("Member sucessfully update.", member, StatusCodes.OK);
+
+      const updateMember = await this.memberRepository.findByIdAsync(id);
+      if (!updateMember) {
+        return ServiceResponse.failure(
+          "Failed to retrieve the updated member.",
+          null,
+          StatusCodes.INTERNAL_SERVER_ERROR,
+        );
+      }
+
+      return ServiceResponse.success("Member successfully update.", updateMember, StatusCodes.OK);
     } catch (ex) {
       const errorMessage = `Error while updating the candidate whith id ${id} and their new data ${newMemberData};,${
         (ex as Error).message
@@ -139,7 +149,7 @@ export class MemberService {
       }
 
       await this.memberRepository.deleteAsync(id);
-      return ServiceResponse.success("Member sucessfully deleted.", null, StatusCodes.OK);
+      return ServiceResponse.success("Member successfully deleted.", null, StatusCodes.OK);
     } catch (ex) {
       const errorMessage = `Error while deletinh the member with id ${id}:, ${(ex as Error).message}`;
       logger.error(errorMessage);

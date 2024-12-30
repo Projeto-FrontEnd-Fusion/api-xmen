@@ -4,22 +4,60 @@ export let members: Member[] = [
   {
     id: 1,
     name: "Alice",
-    email: "alice@example.com",
-    abilities: "Habilidade1, Habilidade2, Habilidade3",
-    position: "Desenvolvedor Back End",
-    aboutMe: "Pessoa habilidosa",
-    createdAt: new Date(),
-    updatedAt: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
+    professional_profile_url: [
+      { platform: "GitHub", url: "<https://github.com/johndoe>" },
+      { platform: "LinkedIn", url: "<https://linkedin.com/in/johndoe>" },
+    ],
+    stack: "backend",
+    community_level: "code wizard",
+    current_squad: "X-mens",
+    skills: ["HTML", "CSS", "JavaScript", "React", "Node.js", "Git", "Docker"],
+    projects: [
+      {
+        project_cover: "https://project1.pg",
+        project_name: "Personal Portfolio",
+        description: "A personal portfolio website built with React and hosted on GitHub.",
+        technologies_used: ["React", "CSS", "JavaScript"],
+        project_url: "<https://github.com/johndoe/portfolio>",
+      },
+      {
+        project_cover: "https://project1.pg",
+        project_name: "E-commerce Website",
+        description: "An online store platform with payment integration, built with Node.js and MongoDB.",
+        technologies_used: ["Node.js", "Express", "MongoDB"],
+        project_url: "<https://github.com/johndoe/ecommerce>",
+      },
+    ],
+    softskills: ["Communication", "Problem-solving", "Teamwork", "Adaptability", "Time management"],
   },
   {
     id: 2,
-    name: "Robert",
-    email: "Robert@example.com",
-    abilities: "Habilidade1, Habilidade2, Habilidade3",
-    position: "Desenvolvedor Front End",
-    aboutMe: "Pessoa habilidosa",
-    createdAt: new Date(),
-    updatedAt: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
+    name: "Pedro",
+    professional_profile_url: [
+      { platform: "GitHub", url: "<https://github.com/johndoe>" },
+      { platform: "LinkedIn", url: "<https://linkedin.com/in/johndoe>" },
+    ],
+    stack: "full-stack",
+    community_level: "code wizard",
+    current_squad: "marvels",
+    skills: ["HTML", "CSS", "JavaScript", "React", "Node.js", "Git", "Docker", "Prisma", "NestJS"],
+    projects: [
+      {
+        project_cover: "https://project1.pg",
+        project_name: "Personal Portfolio",
+        description: "A personal portfolio website built with React and hosted on GitHub.",
+        technologies_used: ["React", "CSS", "JavaScript"],
+        project_url: "<https://github.com/johndoe/portfolio>",
+      },
+      {
+        project_cover: "https://project1.pg",
+        project_name: "E-commerce Website",
+        description: "An online store platform with payment integration, built with Node.js and MongoDB.",
+        technologies_used: ["Node.js", "Express", "MongoDB"],
+        project_url: "<https://github.com/johndoe/ecommerce>",
+      },
+    ],
+    softskills: ["Communication", "Problem-solving", "Teamwork", "Adaptability", "Time management"],
   },
 ];
 
@@ -28,8 +66,6 @@ export class MemberRepository {
     const newMember: Member = {
       id: Date.now(),
       ...memberToBeCreated,
-      createdAt: new Date(),
-      updatedAt: new Date(),
     };
     members.push(newMember);
     return newMember;
