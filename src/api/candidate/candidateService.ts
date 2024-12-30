@@ -115,7 +115,9 @@ export class CandidateService {
       await this.candidateRepository.updateAsync(id, newCandidateData);
       return ServiceResponse.success("Candidate successfully updated.", null, StatusCodes.OK);
     } catch (ex) {
-      const errorMessage = `Error while updating the candidate with id ${id} and their new data ${newCandidateData}:, ${(ex as Error).message}`;
+      const errorMessage = `Error while updating the candidate with id ${id} and their new data ${newCandidateData}:, ${
+        (ex as Error).message
+      }`;
       logger.error(errorMessage);
       return ServiceResponse.failure(
         "An error occurred while updating the candidate.",

@@ -6,6 +6,7 @@ import { pino } from "pino";
 import { openAPIRouter } from "@/api-docs/openAPIRouter";
 import { candidateRouter } from "@/api/candidate/candidateRouter";
 import { healthCheckRouter } from "@/api/healthCheck/healthCheckRouter";
+import { memberRouter } from "@/api/member/memberRouter";
 import errorHandler from "@/common/middleware/errorHandler";
 import rateLimiter from "@/common/middleware/rateLimiter";
 import requestLogger from "@/common/middleware/requestLogger";
@@ -30,6 +31,7 @@ app.use(requestLogger);
 // Routes
 app.use("/health-check", healthCheckRouter);
 app.use("/candidates", candidateRouter);
+app.use("/members", memberRouter);
 
 // Swagger UI
 app.use(openAPIRouter);
