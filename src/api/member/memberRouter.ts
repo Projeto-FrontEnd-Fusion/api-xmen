@@ -18,7 +18,7 @@ memberRegistry.registerPath({
   path: "/members",
   operationId: "createMember",
   description: "Create a member.",
-  summary: " Create Member",
+  summary: "Create Member",
   tags: ["Member"],
   request: {
     body: {
@@ -31,7 +31,7 @@ memberRegistry.registerPath({
   responses: createApiResponses([
     {
       statusCode: StatusCodes.CREATED,
-      description: "Member successfully created",
+      description: "Member successfully created.",
       schema: MemberSchema,
     },
     {
@@ -40,7 +40,7 @@ memberRegistry.registerPath({
     },
     {
       statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-      description: "An error occurred while creating the member",
+      description: "An error occurred while creating the member.",
     },
   ]),
 });
@@ -51,7 +51,7 @@ memberRegistry.registerPath({
   path: "/members",
   operationId: "findAllMembers",
   description: "Retieve all members.",
-  summary: "Get all menbers",
+  summary: "Get all members",
   tags: ["Member"],
   responses: createApiResponses([
     {
@@ -120,7 +120,7 @@ memberRegistry.registerPath({
   responses: createApiResponses([
     {
       statusCode: StatusCodes.OK,
-      description: " Member sucessfully updated.",
+      description: "Member sucessfully updated.",
       schema: z.null(),
     },
     {
@@ -129,7 +129,7 @@ memberRegistry.registerPath({
     },
     {
       statusCode: StatusCodes.NOT_FOUND,
-      description: "member not found.",
+      description: "Member not found.",
     },
     {
       statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
@@ -150,7 +150,7 @@ memberRegistry.registerPath({
   responses: createApiResponses([
     {
       statusCode: StatusCodes.OK,
-      description: "Member sucessfully delete.",
+      description: "Member sucessfully deleted.",
       schema: z.null(),
     },
     {
@@ -159,11 +159,11 @@ memberRegistry.registerPath({
     },
     {
       statusCode: StatusCodes.NOT_FOUND,
-      description: " Member not found.",
+      description: "Member not found.",
     },
     {
       statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-      description: " An error ocurred while deleting the member",
+      description: "An error ocurred while deleting the member.",
     },
   ]),
 });
