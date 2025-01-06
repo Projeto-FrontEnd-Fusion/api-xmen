@@ -34,7 +34,7 @@ export class MemberService {
       const errorMessage = `Error while creating a member ${memberToBeCreate}:, ${(ex as Error).message}`;
       logger.error(errorMessage);
       return ServiceResponse.failure(
-        "An error occurred while creating the candidate.",
+        "An error occurred while creating the member.",
         null,
         StatusCodes.INTERNAL_SERVER_ERROR,
       );
@@ -49,7 +49,7 @@ export class MemberService {
       }
       return ServiceResponse.success<Member[]>("All Members successfully found.", members, StatusCodes.OK);
     } catch (ex) {
-      const errorMessage = `Error while finding all candidates: $${(ex as Error).message}`;
+      const errorMessage = `Error while finding all members: $${(ex as Error).message}`;
       logger.error(errorMessage);
       return ServiceResponse.failure(
         "An error occurred while retrieving all members.",
@@ -119,9 +119,9 @@ export class MemberService {
         );
       }
 
-      return ServiceResponse.success("Member successfully update.", updateMember, StatusCodes.OK);
+      return ServiceResponse.success("Member successfully updated.", updateMember, StatusCodes.OK);
     } catch (ex) {
-      const errorMessage = `Error while updating the candidate whith id ${id} and their new data ${newMemberData};,${
+      const errorMessage = `Error while updating the member whith id ${id} and their new data ${newMemberData};,${
         (ex as Error).message
       }`;
       logger.error(errorMessage);
