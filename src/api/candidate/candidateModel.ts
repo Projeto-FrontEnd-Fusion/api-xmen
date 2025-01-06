@@ -6,7 +6,6 @@ extendZodWithOpenApi(z);
 
 const { id, name, email, abilities, position, aboutMe, createdAt, updatedAt } = commonValidations;
 
-export type CreateCandidateDto = z.infer<typeof CreateCandidateDtoSchema>;
 export const CreateCandidateDtoSchema = z.object({
   name,
   email,
@@ -15,7 +14,6 @@ export const CreateCandidateDtoSchema = z.object({
   aboutMe,
 });
 
-export type Candidate = z.infer<typeof CandidateSchema>;
 export const CandidateSchema = z.object({
   id,
   name,
@@ -27,13 +25,17 @@ export const CandidateSchema = z.object({
   updatedAt,
 });
 
-export type UpdateCandidateDto = z.infer<typeof UpdateCandidateDtoSchema>;
 export const UpdateCandidateDtoSchema = z.object({
   name,
+  email,
   abilities,
   position,
   aboutMe,
 });
+
+export type CreateCandidateDto = z.infer<typeof CreateCandidateDtoSchema>;
+export type Candidate = z.infer<typeof CandidateSchema>;
+export type UpdateCandidateDto = z.infer<typeof UpdateCandidateDtoSchema>;
 
 export const CreateCandidateSchema = z.object({
   body: z.object({
@@ -53,6 +55,7 @@ export const UpdateCandidateSchema = z.object({
   params: z.object({ id }),
   body: z.object({
     name,
+    email,
     abilities,
     position,
     aboutMe,
