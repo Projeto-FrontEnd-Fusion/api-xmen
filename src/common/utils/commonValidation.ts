@@ -44,3 +44,16 @@ export const commonValidationsMembers = {
   ),
   softskills: z.array(z.string()),
 };
+
+export const commonValidationsProjects = {
+  id: z
+    .string()
+    .refine((data) => !Number.isNaN(Number(data)), "ID must be a numeric value")
+    .transform(Number)
+    .refine((num) => num > 0, "ID must be a positive number"),
+  project_cover: z.string().url(),
+  project_name: z.string().max(50),
+  description: z.string().max(500),
+  technologies_used: z.array(z.string()),
+  project_url: z.string().url(),
+};

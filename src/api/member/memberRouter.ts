@@ -50,7 +50,7 @@ memberRegistry.registerPath({
   method: "get",
   path: "/members",
   operationId: "findAllMembers",
-  description: "Retieve all members.",
+  description: "Retrieve all members.",
   summary: "Get all members",
   tags: ["Member"],
   responses: createApiResponses([
@@ -120,7 +120,7 @@ memberRegistry.registerPath({
   responses: createApiResponses([
     {
       statusCode: StatusCodes.OK,
-      description: "Member sucessfully updated.",
+      description: "Member successfully updated.",
       schema: z.null(),
     },
     {
@@ -150,7 +150,7 @@ memberRegistry.registerPath({
   responses: createApiResponses([
     {
       statusCode: StatusCodes.OK,
-      description: "Member sucessfully deleted.",
+      description: "Member successfully deleted.",
       schema: z.null(),
     },
     {

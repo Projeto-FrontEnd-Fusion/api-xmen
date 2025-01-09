@@ -3,9 +3,10 @@ import { OpenAPIRegistry, OpenApiGeneratorV3 } from "@asteasolutions/zod-to-open
 import { candidateRegistry } from "@/api/candidate/candidateRouter";
 import { healthCheckRegistry } from "@/api/healthCheck/healthCheckRouter";
 import { memberRegistry } from "@/api/member/memberRouter";
+import { projectRegistry } from "@/api/project/projectRouter";
 
 export function generateOpenAPIDocument() {
-  const registry = new OpenAPIRegistry([healthCheckRegistry, candidateRegistry, memberRegistry]);
+  const registry = new OpenAPIRegistry([healthCheckRegistry, candidateRegistry, memberRegistry, projectRegistry]);
   const generator = new OpenApiGeneratorV3(registry.definitions);
 
   return generator.generateDocument({

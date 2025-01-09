@@ -49,7 +49,7 @@ export class MemberService {
       }
       return ServiceResponse.success<Member[]>("All Members successfully found.", members, StatusCodes.OK);
     } catch (ex) {
-      const errorMessage = `Error while finding all members: $${(ex as Error).message}`;
+      const errorMessage = `Error while finding all members: ${(ex as Error).message}`;
       logger.error(errorMessage);
       return ServiceResponse.failure(
         "An error occurred while retrieving all members.",
