@@ -8,7 +8,6 @@ import {
   UpdateCandidateDtoSchema,
 } from "@/api/candidate/candidateModel";
 import { CandidateRepository } from "@/api/candidate/candidateRepository";
-// import { DatabaseService } from "@common/database/databaseService";
 import { ServiceResponse } from "@/common/models/serviceResponse";
 import { logger } from "@/server";
 

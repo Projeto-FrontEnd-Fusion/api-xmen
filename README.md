@@ -26,6 +26,12 @@ npm install
 
 Change `.env.template` to `.env`
 
+**Connect Prisma ORM to the database**
+
+```bash
+npx prisma migrate dev --name init
+```
+
 **Running the project**
 
 Development mode:

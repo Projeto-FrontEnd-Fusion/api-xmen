@@ -1,55 +1,41 @@
 import type { Candidate, CreateCandidateDto, UpdateCandidateDto } from "@/api/candidate/candidateModel";
-
-export let candidates: Candidate[] = [
-  {
-    id: 1,
-    name: "Alice",
-    email: "alice@example.com",
-    abilities: "Habilidade1, Habilidade2, Habilidade3",
-    position: "Desenvolvedor Back End",
-    aboutMe: "Pessoa habilidosa",
-    createdAt: new Date(),
-    updatedAt: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
-  },
-  {
-    id: 2,
-    name: "Robert",
-    email: "Robert@example.com",
-    abilities: "Habilidade1, Habilidade2, Habilidade3",
-    position: "Desenvolvedor Front End",
-    aboutMe: "Pessoa habilidosa",
-    createdAt: new Date(),
-    updatedAt: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
-  },
-];
+import { query } from "@/common/database/databaseService";
 
 export class CandidateRepository {
-  async createAsync(candidateToBeCreated: CreateCandidateDto): Promise<Candidate> {
-    const newCandidate: Candidate = {
-      id: Date.now(),
-      ...candidateToBeCreated,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    };
-    candidates.push(newCandidate);
-    return newCandidate;
+  async createAsync({ name, email, abilities, position, aboutMe }: CreateCandidateDto): Promise<Candidate> {
+    const result = await query<Candidate>(
+      `
+      INSERT INTO candidates ("name", "email", "abilities", "position", "aboutMe")
+      VALUES ($1, $2, $3, $4, $5)
+      RETURNING *
+      `,
+      [name, email, abilities, position, aboutMe],
+    );
+    return result[0];
   }
 
-  async findAllAsync(): Promise<Candidate[] | null> {
-    return candidates;
+  async findAllAsync(): Promise<Candidate[] | undefined> {
+    const result = await query<Candidate>(`SELECT * FROM candidates ORDER BY "id"`);
+    return result;
   }
 
-  async findByIdAsync(id: number): Promise<Candidate | null> {
-    return candidates.find((candidate) => candidate.id === id) || null;
+  async findByIdAsync(id: number): Promise<Candidate | undefined> {
+    const result = await query<Candidate>(`SELECT * FROM candidates WHERE "id" = $1`, [id]);
+    return result[0];
   }
 
-  async updateAsync(id: number, newCandidateData: UpdateCandidateDto) {
-    candidates = candidates.map((candidate) =>
-      candidate.id === id ? { ...candidate, ...newCandidateData, updatedAt: new Date() } : candidate,
+  async updateAsync(id: number, { name, email, abilities, position, aboutMe }: UpdateCandidateDto) {
+    await query<Candidate>(
+      `
+      UPDATE candidates
+      SET "name" = $1, "email" = $2, "abilities" = $3, "position" = $4, "aboutMe" = $5, "updatedAt" = NOW()
+      WHERE "id" = $6
+      `,
+      [name, email, abilities, position, aboutMe, id],
     );
   }
 
   async deleteAsync(id: number) {
-    candidates = candidates.filter((candidate) => candidate.id !== id);
+    await query<Candidate>(`DELETE FROM candidates WHERE "id" = $1`, [id]);
   }
 }
