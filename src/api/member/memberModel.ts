@@ -1,4 +1,4 @@
-import { commonValidations, commonValidationsMembers } from "@/common/utils/commonValidation";
+import { commonValidationsMembers } from "@/common/utils/commonValidation";
 import { z } from "zod";
 
 export type Member = z.infer<typeof MemberSchema>;

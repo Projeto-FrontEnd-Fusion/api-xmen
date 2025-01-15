@@ -7,11 +7,11 @@ import { openAPIRouter } from "@/api-docs/openAPIRouter";
 import { candidateRouter } from "@/api/candidate/candidateRouter";
 import { healthCheckRouter } from "@/api/healthCheck/healthCheckRouter";
 import { memberRouter } from "@/api/member/memberRouter";
+import { projectRouter } from "@/api/project/projectRouter";
 import errorHandler from "@/common/middleware/errorHandler";
 import rateLimiter from "@/common/middleware/rateLimiter";
 import requestLogger from "@/common/middleware/requestLogger";
 import { env } from "@/common/utils/envConfig";
-import { projectRouter } from "./api/project/projectRouter";
 
 const logger = pino({ name: "server start" });
 const app: Express = express();
